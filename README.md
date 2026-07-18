@@ -21,3 +21,10 @@
 
 ### Démarrer l'application 
     python3 manage.py runserver
+
+
+### Créer des migrations
+    python3 manage.py makemigrations backend
+
+### Appliquer les migrations
+    python3 manage.py migrate

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
     'backend',
     'frontend',
     'rest_framework',
@@ -78,11 +79,17 @@ WSGI_APPLICATION = 'websig.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'webgis_db',
+        'USER': 'postgres',
+        'PASSWORD': 'remso2710',
+        'HOST': '172.29.0.1',
+        'PORT': '5432'
     }
 }
 
+# utilisaleur customisé 
+AUTH_USER_MODEL = "backend.Utilisateur"
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
