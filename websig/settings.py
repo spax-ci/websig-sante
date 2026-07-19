@@ -74,6 +74,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'websig.wsgi.application'
 
+# URL d'authentification, rédirection et de déconnexion
+LOGIN_URL = "/auth/"
+LOGIN_REDIRECT_URL = "/auth/admin/"
+LOGOUT_REDIRECT_URL = "/auth/"
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
@@ -94,7 +98,6 @@ REST_FRAMEWORK = {
 
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
-        'backend.authentication.CookieJWTAuthentication',
     ),
 
     'DEFAULT_PERMISSION_CLASSES': (
@@ -105,8 +108,6 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ),
-
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 
 }
 

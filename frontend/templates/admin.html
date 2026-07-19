@@ -21,16 +21,32 @@
             <i class="fa fa-bars"></i>
         </button>
         <!-- Logo -->
-         <a class="navbar-logo" href="">
+         <a class="navbar-logo" href="{% url 'frontend:admin' %}">
             <img src="{% static 'img/e-sante.png' %}" alt="logo" height="50">
          </a>
          <!-- Profil utilisateur -->
           <div class="ms-auto dropdown">
             <a class="d-flex align-items-center text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <!-- Nom de l'administrateur -->
-                 <span class="me-2 text-dark fw-semibold" id="adminiUser">Rémi</span>
+                 <span class="me-2 text-dark fw-semibold" id="adminiUser">{{ request.user.first_name }} {{ request.user.last_name }}</span>
                  <!-- Photo de l'utilisateur -->
-                  <img id="userPhoto" src="{% static 'img/photo.jpg' %}" class="rounded-circle" height="30" alt="user photo">
+                  {% if request.user.photo %}
+
+                    <img 
+                        src="{{ request.user.photo }}"
+                        class="rounded-circle"
+                        height="30"
+                        alt="Photo utilisateur">
+
+                {% else %}
+
+                    <img 
+                        src="{% static 'img/photo.jpg' %}"
+                        class="rounded-circle"
+                        height="30"
+                        alt="Photo utilisateur">
+
+                {% endif %}
             </a>
             <!--Menu de l'utilisateur -->
             <ul class="dropdown-menu dropdown-menu-end shadow">
@@ -52,7 +68,7 @@
                 </li>
                <!-- Lien de déconnexion-->
                 <li>
-                    <a class="dropdown-item text-danger" href="">
+                    <a class="dropdown-item text-danger" href="{% url 'frontend:logout' %}">
                         <i class="fa fa-sign-out me-2" aria-hidden="true"></i>Déconnexion
                     </a>
                 </li>
@@ -99,7 +115,7 @@
                  <div class="p-3 mt-auto">
                     <!--Séparateur-->
                     <hr class=" text-white">
-                    <a href="" class="btn btn-outline-light w-100">
+                    <a href="{% url 'frontend:logout' %}" class="btn btn-outline-light w-100">
                         <i class="fa fa-sign-out me-2" aria-hidden="true"></i>Déconnexion
                     </a>
                  </div>
